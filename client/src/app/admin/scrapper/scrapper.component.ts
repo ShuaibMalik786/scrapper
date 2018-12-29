@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-scrapper',
-  templateUrl: './scrapper.component.html',
-  styleUrls: ['./scrapper.component.scss']
+  selector: "app-scrapper",
+  templateUrl: "./scrapper.component.html",
+  styleUrls: ["./scrapper.component.scss"]
 })
 export class ScrapperComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.getImages();
   }
 
+  getImages() {}
 }
