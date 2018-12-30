@@ -10,7 +10,6 @@ module.exports = async function(url) {
   await page.waitFor(500);
   const content = await page.content();
   const urls = await scrapeUrls(content);
-  console.log(urls);
   // await browser.close();
   return urls;
 };
@@ -18,7 +17,6 @@ module.exports = async function(url) {
 async function scrapeUrls(html) {
   try {
     let images = [];
-    console.log($("._2xsyJg", html).length);
     for (let i = 0; i < $("._2xsyJg", html).length; i++) {
       var pattern = new RegExp("https://rukminim1" + "(.*)" + ".jpg");
       let [imageUrl, ...something] = pattern.exec(

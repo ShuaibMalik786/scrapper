@@ -8,9 +8,5 @@ import { Component, OnInit } from "@angular/core";
 export class ScrapperComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {
-    this.getImages();
-  }
-
-  getImages() {}
+  ngOnInit() {}
 }

@@ -1,12 +1,26 @@
+import { AdminGuard } from "./_guards/admin.guard";
+import { AuthGuard } from "./_guards/auth.guard";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 
-import { LoginService, AuthInterceptor, SignupService } from "./services/index";
+import {
+  LoginService,
+  AuthInterceptor,
+  SignupService,
+  ScrapperService
+} from "./services/index";
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, HttpClientModule],
-  providers: [LoginService, SignupService, AuthInterceptor]
+  providers: [
+    LoginService,
+    SignupService,
+    ScrapperService,
+    AuthInterceptor,
+    AuthGuard,
+    AdminGuard
+  ]
 })
 export class SharedModule {}

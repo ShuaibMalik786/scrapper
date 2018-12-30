@@ -2,7 +2,7 @@ const validateObjectId = require("../middleware/validateObjectId");
 const scrapper = require("../helpers/scraper");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
-const { Genre, validate } = require("../models/genre");
+const { Scrape, validate } = require("../models/scrape");
 const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
@@ -10,10 +10,9 @@ const responseFormatter = require("../helpers/response");
 
 let response;
 
-router.get("/", async (req, res) => {
+router.post("/findImages", async (req, res) => {
   // const genres = await Genre.find().sort('name');
-  let images = await scrapper("https://www.flipkart.com/redmi-note-5-pro-black-64-gb/p/itmf2fc3xgmxnhpx");
-  console.log(images, "main");
+  let images = await scrapper(req.body.url);
 
   if (!images) {
     this.response = responseFormatter("fail", null, "failed to scrap");
@@ -26,6 +25,19 @@ router.get("/", async (req, res) => {
     );
     return res.send(this.response);
   }
+});
+
+router.post("/save", async (req, res) => {
+  // console.log(req.body);
+  const { error } = validate(req.body);
+  if (error) {
+    this.response = responseFormatter("fail", null, error.details[0].message);
+    return res.status(400).send(this.response);
+  }
+  let genre = new Scrape({ name: req.body.name, images: req.body.images });
+  genre = await genre.save();
+
+  res.send(genre);
 });
 
 // router.post('/', auth, async (req, res) => {
