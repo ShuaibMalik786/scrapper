@@ -1,3 +1,4 @@
+import { ListScrappersComponent } from "./scrapper/list-scrappers/list-scrappers.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./../shared/_guards/auth.guard";
 import { AdminGuard } from "./../shared/_guards/admin.guard";
@@ -5,6 +6,7 @@ import { CreateScrapeComponent } from "./scrapper/create-scrape/create-scrape.co
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ScrapperComponent } from "./scrapper/scrapper.component";
+import { ViewScrapeComponent } from './scrapper/view-scrape/view-scrape.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,14 @@ const routes: Routes = [
       {
         path: "create",
         component: CreateScrapeComponent
+      },
+      {
+        path: "list",
+        component: ListScrappersComponent
+      },
+      {
+        path: "view/:id",
+        component: ViewScrapeComponent
       }
     ]
   }

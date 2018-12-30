@@ -10,19 +10,35 @@ import { environment } from "../../../environments/environment";
 export class ScrapperService {
   constructor(private http: HttpClient) {}
 
-  //scrape images
+  // scrape images
   scrapeUrls(data): Observable<any> {
-    let url = `${environment.apiBaseUrl}/scrape/findImages`;
+    const url = `${environment.apiBaseUrl}/scrape/findImages`;
     return this.http
       .post(url, data)
       .pipe(map(response => response, catchError(this.handleError)));
   }
 
-  //request for saving scraped images
+  // request for saving scraped images
   SaveScrapeUrls(data): Observable<any> {
-    let url = `${environment.apiBaseUrl}/scrape/save `;
+    const url = `${environment.apiBaseUrl}/scrape/save `;
     return this.http
       .post(url, data)
+      .pipe(map(response => response, catchError(this.handleError)));
+  }
+
+  // get all scrapping names
+  getScrapes(): Observable<any> {
+    const url = `${environment.apiBaseUrl}/scrape/list `;
+    return this.http
+      .get(url)
+      .pipe(map(response => response, catchError(this.handleError)));
+  }
+
+  // get all scrapping names
+  getScrape(id: any): Observable<any> {
+    const url = `${environment.apiBaseUrl}/scrape/${id} `;
+    return this.http
+      .get(url)
       .pipe(map(response => response, catchError(this.handleError)));
   }
 

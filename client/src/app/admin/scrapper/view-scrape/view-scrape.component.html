@@ -1,0 +1,46 @@
+<div class="container">
+  <h3>{{ scrape?.name }}</h3>
+  <div class="card">
+    <div class="card-body row">
+      <div class="card p-0" *ngFor="let image of scrape?.images">
+        <a class="smallImage"
+          href="{{ image?.largeImage }}"
+          target="_blank"
+          download
+        >
+          <img
+            src="{{ image?.smallImage }}"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The large imageModal -->
+<div class="modal" id="imageModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <a
+          type="button"
+          class="btn btn-primary"
+          href="{{ largeImage }}"
+          target="_blank"
+          download
+        >
+          Download
+        </a>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img src="{{ largeImage }}" class="bigImage" />
+      </div>
+    </div>
+  </div>
+</div>

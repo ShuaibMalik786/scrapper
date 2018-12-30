@@ -1,0 +1,7 @@
+<div class="container">
+  <ul class="list-group mt-4">
+    <li class="list-group-item" *ngFor="let scrape of scrapes" (click)="loadScrape(scrape._id)"> 
+      {{ scrape?.name }}
+    </li>
+  </ul>
+</div>
