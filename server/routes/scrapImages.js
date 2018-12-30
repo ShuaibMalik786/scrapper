@@ -2,7 +2,7 @@ const validateObjectId = require("../middleware/validateObjectId");
 const scrapper = require("../helpers/scraper");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
-const { Scrape, validate } = require("../models/scrape");
+const {Scrape, validate} = require("../models/scrape");
 const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
@@ -10,34 +10,40 @@ const responseFormatter = require("../helpers/response");
 
 let response;
 
-router.post("/findImages", [auth, admin], async (req, res) => {
-  // const genres = await Genre.find().sort('name');
-  let images = await scrapper(req.body.url);
+router.get("/list", async (req, res) => {
+    let scrapes = new Scrape.find().sort('name');
+    res.send(scrapes);
+});
 
-  if (!images) {
-    this.response = responseFormatter("fail", null, "failed to scrap");
-    return res.status(400).send(this.response);
-  } else {
-    this.response = responseFormatter(
-      "success",
-      images,
-      "successfully scrapped"
-    );
-    return res.send(this.response);
-  }
+router.post("/findImages", [auth, admin], async (req, res) => {
+    // const genres = await Genre.find().sort('name');
+    let images = await scrapper(req.body.url);
+
+    if (!images) {
+        this.response = responseFormatter("fail", null, "failed to scrap");
+        return res.status(400).send(this.response);
+    } else {
+        this.response = responseFormatter(
+            "success",
+            images,
+            "successfully scrapped"
+        );
+        return res.send(this.response);
+    }
 });
 
 router.post("/save", async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) {
-    this.response = responseFormatter("fail", null, error.details[0].message);
-    return res.status(400).send(this.response);
-  }
-  let scrape = new Scrape({ name: req.body.name, images: req.body.images });
-  scrape = await scrape.save();
+    const {error} = validate(req.body);
+    if (error) {
+        this.response = responseFormatter("fail", null, error.details[0].message);
+        return res.status(400).send(this.response);
+    }
+    let scrape = new Scrape({name: req.body.name, images: req.body.images});
+    scrape = await scrape.save();
 
-  res.send(scrape);
+    res.send(scrape);
 });
+
 
 // router.post('/', auth, async (req, res) => {
 // router.post('/', async (req, res) => {
