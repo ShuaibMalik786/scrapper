@@ -10,7 +10,7 @@ const responseFormatter = require("../helpers/response");
 
 let response;
 
-router.post("/findImages", async (req, res) => {
+router.post("/findImages", [auth, admin], async (req, res) => {
   // const genres = await Genre.find().sort('name');
   let images = await scrapper(req.body.url);
 

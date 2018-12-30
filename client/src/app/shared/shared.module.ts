@@ -8,7 +8,8 @@ import {
   LoginService,
   AuthInterceptor,
   SignupService,
-  ScrapperService
+  ScrapperService,
+  UserService
 } from "./services/index";
 
 @NgModule({
@@ -18,6 +19,7 @@ import {
     LoginService,
     SignupService,
     ScrapperService,
+    UserService,
     AuthInterceptor,
     AuthGuard,
     AdminGuard

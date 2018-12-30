@@ -9,7 +9,8 @@ import { map, catchError } from "rxjs/operators";
 export class SignupService {
   constructor(private http: HttpClient) {}
 
-  signup(data): Observable<any> {
+  // Registers user
+  signup(data: any): Observable<any> {
     return this.http
       .post("http://localhost:3030/api/users", data)
       .pipe(map(response => response, catchError(this.handleError)));

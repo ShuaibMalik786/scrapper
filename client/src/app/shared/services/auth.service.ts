@@ -7,7 +7,7 @@ import * as jwt_decode from "jwt-decode";
 export class AuthService {
   constructor() {}
 
-
+  //Checks is user is logged in or not
   isLoggedIn(): any {
     let token = localStorage.getItem("token");
     if (token) {
@@ -15,6 +15,7 @@ export class AuthService {
     } else return true;
   }
 
+  //Checks is user is logged in as admin
   isAdmin(): any {
     let token = localStorage.getItem("token");
     if (token) {

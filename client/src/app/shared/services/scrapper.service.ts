@@ -10,6 +10,7 @@ import { environment } from "../../../environments/environment";
 export class ScrapperService {
   constructor(private http: HttpClient) {}
 
+  //scrape images
   scrapeUrls(data): Observable<any> {
     let url = `${environment.apiBaseUrl}/scrape/findImages`;
     return this.http
@@ -17,6 +18,7 @@ export class ScrapperService {
       .pipe(map(response => response, catchError(this.handleError)));
   }
 
+  //request for saving scraped images
   SaveScrapeUrls(data): Observable<any> {
     let url = `${environment.apiBaseUrl}/scrape/save `;
     return this.http

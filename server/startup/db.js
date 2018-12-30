@@ -9,13 +9,15 @@ module.exports = async function() {
   await mongoose.connect(db);
   winston.info(`Connected to ${db}...`);
 
-  let user = new User({
-    name: "shuaib",
-    email: "admin@gmail.com",
-    password: "123456",
-    isAdmin: true
-  });
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
-  user.save();
+  if (!(await User.find().sort("admin@gmail.com"))) {
+    let user = new User({
+      name: "shuaib",
+      email: "admin@gmail.com",
+      password: "123456",
+      isAdmin: true
+    });
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+    user.save();
+  }
 };

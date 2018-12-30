@@ -10,6 +10,8 @@ export class LoginService {
   constructor(private http: HttpClient) {}
   token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzI1ZTMyZDdmYzFmNjJjZjhhZmRjNGEiLCJpYXQiOjE1NDU5ODgwMTd9.JojymmYSEE5sAB8jjuhIOS8wy1an32RhWWGCF6pPDqo';
 
+
+  //logs in user
   login(data): Observable<any> {
     return this.http.post("http://localhost:3030/api/auth", data).pipe(
       map(response => response,
