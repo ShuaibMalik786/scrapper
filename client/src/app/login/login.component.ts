@@ -2,6 +2,8 @@ import { AuthService } from "./../shared/services/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { LoginService } from "../shared/services";
 import { ValidationManager } from "ng2-validation-manager";
+import { Router } from '@angular/router';
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -26,12 +29,11 @@ export class LoginComponent implements OnInit {
         success => {
           console.log(success);
           localStorage.setItem("token", success.data.token);
-          // alert('userlogged in successfully');
-          console.log(this.authService.isLoggedIn());
+          this.router.navigate(["/"]);
         },
         fail => {
           this.errorMessage = fail.error.message;
-          console.log(fail.error);
+          alert("login failed");
         }
       );
     }

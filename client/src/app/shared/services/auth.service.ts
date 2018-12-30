@@ -20,7 +20,6 @@ export class AuthService {
     let token = localStorage.getItem("token");
     if (token) {
       try {
-        console.log(jwt_decode(token));
         if (jwt_decode(token).isAdmin == true) {
           return true;
         } else return false;

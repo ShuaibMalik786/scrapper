@@ -28,16 +28,15 @@ router.post("/findImages", [auth, admin], async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
-  // console.log(req.body);
   const { error } = validate(req.body);
   if (error) {
     this.response = responseFormatter("fail", null, error.details[0].message);
     return res.status(400).send(this.response);
   }
-  let genre = new Scrape({ name: req.body.name, images: req.body.images });
-  genre = await genre.save();
+  let scrape = new Scrape({ name: req.body.name, images: req.body.images });
+  scrape = await scrape.save();
 
-  res.send(genre);
+  res.send(scrape);
 });
 
 // router.post('/', auth, async (req, res) => {

@@ -27,7 +27,6 @@ export class CreateScrapeComponent implements OnInit {
         success => {
           console.log(success);
           this.images = success.data;
-          console.log(this.images);
         },
         fail => {
           console.log(fail.error);

@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
         success => {
           console.log(success);
           localStorage.setItem("token", success.data.token);
-          alert('user registered successfully');
+          alert('registered successfully');
         },
         fail => {
           this.errorMessage = fail.error.errorMessage;
