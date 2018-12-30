@@ -1,14 +1,13 @@
 import { ScrapperService } from "./../../../shared/services/scrapper.service";
 import { Component, OnInit } from "@angular/core";
 import { ValidationManager } from "ng2-validation-manager";
-import { FormArray } from "@angular/forms";
 
 @Component({
-  selector: "app-create-scrape",
-  templateUrl: "./create-scrape.component.html",
-  styleUrls: ["./create-scrape.component.scss"]
+  selector: 'app-feed-html',
+  templateUrl: './feed-html.component.html',
+  styleUrls: ['./feed-html.component.scss']
 })
-export class CreateScrapeComponent implements OnInit {
+export class FeedHTMLComponent implements OnInit {
   scrapeUrlForm: any;
   images;
   scrapeSaveForm: any;
@@ -23,7 +22,7 @@ export class CreateScrapeComponent implements OnInit {
 
   startScrape() {
     if (this.scrapeUrlForm.isValid()) {
-      this.scrapperService.scrapeUrls(this.scrapeUrlForm.getData()).subscribe(
+      this.scrapperService.scrapeFeedUrls(this.scrapeUrlForm.getData()).subscribe(
         success => {
           console.log(success);
           this.images = success.data;
@@ -38,7 +37,7 @@ export class CreateScrapeComponent implements OnInit {
   saveScrape() {
     let data = {
       name: this.scrapeSaveForm.getValue("name"),
-      url: this.scrapeUrlForm.getValue("url"),
+      url: this.scrapeSaveForm.getValue("url"),
       images: this.images,
     };
     if (this.scrapeSaveForm.isValid()) {
@@ -57,13 +56,14 @@ export class CreateScrapeComponent implements OnInit {
 
   initiateUrlForm() {
     this.scrapeUrlForm = new ValidationManager({
-      url: "required|minLength:5|maxLength:1000"
+      html: "required"
     });
   }
 
   initiateSaveScrapeForm() {
     this.scrapeSaveForm = new ValidationManager({
       name: "required|minLength:5|maxLength:100",
+      url: "required|minLength:5",
     });
   }
 }

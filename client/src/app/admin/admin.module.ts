@@ -11,6 +11,7 @@ import { HomeComponent } from "./home/home.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SharedModule } from "../shared/shared.module";
 import { ViewScrapeComponent } from './scrapper/view-scrape/view-scrape.component';
+import { FeedHTMLComponent } from './scrapper/feed-html/feed-html.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ViewScrapeComponent } from './scrapper/view-scrape/view-scrape.componen
     HomeComponent,
     ProfileComponent,
     ListScrappersComponent,
-    ViewScrapeComponent
+    ViewScrapeComponent,
+    FeedHTMLComponent
   ],
   imports: [
     CommonModule,

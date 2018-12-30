@@ -1,5 +1,6 @@
 const validateObjectId = require("../middleware/validateObjectId");
 const scrapper = require("../helpers/scraper");
+const feedScraper = require("../helpers/feedScraper");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const { Scrape, validate } = require("../models/scrape");
@@ -9,7 +10,6 @@ const router = express.Router();
 const responseFormatter = require("../helpers/response");
 
 let response;
-
 
 router.get("/list", [auth, admin], async (req, res) => {
   const scrapes = await Scrape.find()
@@ -24,9 +24,7 @@ router.get("/list", [auth, admin], async (req, res) => {
   }
 });
 
-
 router.post("/findImages", [auth, admin], async (req, res) => {
-  // const genres = await Genre.find().sort('name');
   let images = await scrapper(req.body.url);
 
   if (!images) {
@@ -48,11 +46,48 @@ router.post("/save", async (req, res) => {
     this.response = responseFormatter("fail", null, error.details[0].message);
     return res.status(400).send(this.response);
   }
-  let scrape = new Scrape({ name: req.body.name, images: req.body.images });
+  let scrape = new Scrape({
+    name: req.body.name,
+    url: req.body.url,
+    images: req.body.images
+  });
+
   scrape = await scrape.save();
 
-  res.send(scrape);
+  if (scrape) {
+    this.response = responseFormatter("success", scrape, "Successfully saved");
+    res.send(this.response);
+  }
 });
+
+router.post("/findFeedImages", [auth, admin], async (req, res) => {
+  let images = await feedScraper(req.body.html);
+
+  if (!images) {
+    this.response = responseFormatter("fail", null, "failed to scrap");
+    return res.status(400).send(this.response);
+  } else {
+    this.response = responseFormatter(
+      "success",
+      images,
+      "successfully scrapped"
+    );
+    return res.send(this.response);
+  }
+});
+
+
+// router.post("/saveFeeded", async (req, res) => {
+//   const { error } = validate(req.body);
+//   if (error) {
+//     this.response = responseFormatter("fail", null, error.details[0].message);
+//     return res.status(400).send(this.response);
+//   }
+//   let scrape = new Scrape({
+//     name: req.body.name,
+//     url: req.body.url,
+//     images: req.body.images
+//   });
 
 router.get("/:id", [auth, admin, validateObjectId], async (req, res) => {
   const scrapes = await Scrape.findById(req.params.id);

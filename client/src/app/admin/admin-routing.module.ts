@@ -1,3 +1,4 @@
+import { FeedHTMLComponent } from './scrapper/feed-html/feed-html.component';
 import { ListScrappersComponent } from "./scrapper/list-scrappers/list-scrappers.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./../shared/_guards/auth.guard";
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: "view/:id",
         component: ViewScrapeComponent
+      },
+      {
+        path: "feedHTML",
+        component: FeedHTMLComponent
       }
     ]
   }
