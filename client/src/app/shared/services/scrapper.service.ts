@@ -58,6 +58,13 @@ export class ScrapperService {
       .pipe(map(response => response, catchError(this.handleError)));
   }
 
+  deleteScrape(id: any): Observable<any> {
+    const url = `${environment.apiBaseUrl}/scrape/${id} `;
+    return this.http
+      .delete(url)
+      .pipe(map(response => response, catchError(this.handleError)));
+  }
+
   public handleError(error: Response) {
     return observableThrowError(error.json());
   }

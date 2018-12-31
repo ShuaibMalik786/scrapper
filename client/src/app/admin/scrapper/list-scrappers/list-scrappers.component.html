@@ -1,7 +1,10 @@
 <div class="container">
   <ul class="list-group mt-4">
-    <li class="list-group-item" *ngFor="let scrape of scrapes" (click)="loadScrape(scrape._id)"> 
-      {{ scrape?.name }}
+    <li class="list-group-item" *ngFor="let scrape of scrapes">
+      <div (click)="loadScrape(scrape._id)">{{ scrape?.name }}</div>
+      <div  class="text-right">
+        <a (click)="deleteScrape(scrape._id)">Delete</a>
+      </div>
     </li>
   </ul>
 </div>

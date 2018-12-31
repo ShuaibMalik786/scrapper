@@ -76,7 +76,6 @@ router.post("/findFeedImages", [auth, admin], async (req, res) => {
   }
 });
 
-
 // router.post("/saveFeeded", async (req, res) => {
 //   const { error } = validate(req.body);
 //   if (error) {
@@ -98,6 +97,27 @@ router.get("/:id", [auth, admin, validateObjectId], async (req, res) => {
     let response = responseFormatter("fail", scrapes, "scrape not found");
     res.status(400).send(response);
   }
+});
+
+router.delete("/:id", [auth, admin, validateObjectId], async (req, res) => {
+  const scrapes = await Scrape.findByIdAndRemove(req.params.id);
+
+  if (!scrapes) {
+    let response = responseFormatter(
+      "fail",
+      scrapes,
+      "The scrape with the given ID was not found."
+    );
+    res.status(400).send(response);
+  }
+
+  const scrapeList = await Scrape.find();
+  let response = responseFormatter(
+    "success",
+    scrapeList,
+    "The scrape with the given ID deleted."
+  );
+  res.send(response);
 });
 
 // router.post('/', auth, async (req, res) => {

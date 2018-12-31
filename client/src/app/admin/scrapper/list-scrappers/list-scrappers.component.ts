@@ -31,6 +31,19 @@ export class ListScrappersComponent implements OnInit {
     );
   }
 
+  deleteScrape(id: any) {
+    this.scrapperService.deleteScrape(id).subscribe(
+      success => {
+        console.log(success);
+        this.scrapes = success.data;
+      },
+      fail => {
+        console.log(fail.error);
+        alert("failed to delete scrape");
+      }
+    );
+  }
+
   loadScrape(id) {
     this.router.navigate(["/admin/view", id]);
   }

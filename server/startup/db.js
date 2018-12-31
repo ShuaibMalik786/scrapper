@@ -9,7 +9,8 @@ module.exports = async function() {
   await mongoose.connect(db);
   winston.info(`Connected to ${db}...`);
 
-  if (!(await User.find().sort("admin@gmail.com"))) {
+  const admin = await User.find().sort("admin@gmail.com");
+  if (admin == '') { 
     let user = new User({
       name: "shuaib",
       email: "admin@gmail.com",
