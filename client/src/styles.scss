@@ -2,5 +2,19 @@
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
-    font-size: 13px;
+  font-size: 13px;
+}
+
+.fa {
+  font-size: 15px !important;
+}
+
+body {
+  //   background-color: rgb(245, 241, 241);
+}
+
+.btn-outline-primary {
+  &:hover {
+    color: white !important;
+  }
 }

@@ -1,9 +1,18 @@
-<div class="container">
-  <h3>{{ scrape?.name }}</h3>
-  <h6>{{ scrape?.url }}</h6>
+<div class="container mt-4">
+  <h3></h3>
+
   <div class="card">
-    <div class="card-body row">
-      <div class="card p-0" *ngFor="let image of scrape?.images">
+      <div class="card-header">{{ scrape?.name }}</div>
+      <div class="card-body">
+        <div>
+          <h6>Url :</h6>
+          <p>{{ scrape?.url }}</p>
+        </div>
+      </div> 
+    </div>
+  <div class="card mt-4 ">
+    <div class="card-body row p-0 m-0">
+      <div *ngFor="let image of scrape?.images">
         <a class="smallImage"
           href="{{ image?.largeImage }}"
           target="_blank"

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
     <form [formGroup]="scrapeUrlForm.getForm()" (ngSubmit)="startScrape()">
       <div class="form-group">
         <label for="html">html you want to scrape:</label>
@@ -7,13 +7,16 @@
           {{ scrapeUrlForm.getError("html") }}
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Scrape</button>
+      <div class="text-center">
+          <button type="submit" class="btn btn-primary"> Scrape
+          </button>
+        </div>
     </form>
   
     <div class="card mt-4" *ngIf="images">
-        <div class="card-header">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Save scrape
+        <div class="card-header text-right">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fa fa-save"></i>
+            Save
           </button>
         </div>
       <div class="card-body">

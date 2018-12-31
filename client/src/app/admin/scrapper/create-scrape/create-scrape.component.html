@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
   <form [formGroup]="scrapeUrlForm.getForm()" (ngSubmit)="startScrape()">
     <div class="form-group">
       <label for="url">Url you want to scrape:</label>
@@ -7,15 +7,23 @@
         {{ scrapeUrlForm.getError("url") }}
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Scrape</button>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-search"> </i> Scrape
+      </button>
+    </div>
   </form>
 
   <div class="card mt-4" *ngIf="images">
-      <div class="card-header">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-          Save scrape
-        </button>
-      </div>
+    <div class="card-header">
+      <button
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        Save scrape
+      </button>
+    </div>
     <div class="card-body">
       <div class="row">
         <div *ngFor="let image of images">
@@ -28,37 +36,44 @@
   </div>
 </div>
 
-  
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <form [formGroup]="scrapeSaveForm.getForm()" (ngSubmit)="saveScrape()">
-                <div class="form-group">
-                  <label for="url">Name:</label>
-                  <input type="text" class="form-control" id="url" formControlName="name" />
-                  <div *ngIf="scrapeSaveForm.hasError('name')" class="alert alert-danger">
-                    {{ scrapeSaveForm.getError("name") }}
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-              </form>
-        </div>
-  
-        <!-- Modal footer -->
-        <!-- <div class="modal-footer">
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form [formGroup]="scrapeSaveForm.getForm()" (ngSubmit)="saveScrape()">
+          <div class="form-group">
+            <label for="url">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="url"
+              formControlName="name"
+            />
+            <div
+              *ngIf="scrapeSaveForm.hasError('name')"
+              class="alert alert-danger"
+            >
+              {{ scrapeSaveForm.getError("name") }}
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
           <button type="button" class="btn btn-primary" (click)="saveScrape()">Save</button>
         </div> -->
-  
-      </div>
     </div>
   </div>
+</div>
