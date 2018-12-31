@@ -13,12 +13,12 @@
   <div class="card mt-4 ">
     <div class="card-body row p-0 m-0">
       <div *ngFor="let image of scrape?.images">
-        <a class="smallImage"
+        <a 
           href="{{ image?.largeImage }}"
           target="_blank"
           download
         >
-          <img
+          <img class="smallImage"
             src="{{ image?.smallImage }}"
           />
         </a>

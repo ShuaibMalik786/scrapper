@@ -9,20 +9,19 @@
         <div class="card-body">Mobile Image</div>
         <div class="card-footer">
           <div class="d-flex justify-content-around">
-            <a
-              class="btn btn-outline-primary rounded-circle"
-              (click)="deleteScrape(scrape._id)"
-              ><i class="fa fa-trash"></i
-            ></a>
-            <a
+            <a title="view details" data-toggle="tooltip"
               class="btn btn-outline-primary rounded-circle"
               (click)="loadScrape(scrape._id)"
               ><i class="fa fa-eye"></i
             ></a>
-            <a
-            class="btn btn-outline-primary rounded-circle"
-            ><i class="fa fa-edit"></i
-          ></a>
+            <a title="edit" data-toggle="tooltip" class="btn btn-outline-primary rounded-circle"
+              ><i class="fa fa-edit"></i
+            ></a>
+            <a title="delete" data-toggle="tooltip"
+              class="btn btn-outline-primary rounded-circle"
+              (click)="deleteScrape(scrape._id)"
+              ><i class="fa fa-trash"></i
+            ></a>
           </div>
         </div>
       </div>
