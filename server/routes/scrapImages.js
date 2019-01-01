@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const responseFormatter = require("../helpers/response");
+const _ = require("lodash");
 
 let response;
 
@@ -41,17 +42,26 @@ router.post("/findImages", [auth, admin], async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
+  //validate request
   const { error } = validate(req.body);
   if (error) {
     this.response = responseFormatter("fail", null, error.details[0].message);
     return res.status(400).send(this.response);
   }
-  let scrape = new Scrape({
-    name: req.body.name,
-    url: req.body.url,
-    images: req.body.images
-  });
 
+  //find if name is duplicate
+  let scrape = await Scrape.findOne({ name: req.body.name });
+  if (scrape) {
+    this.response = responseFormatter(
+      "fail",
+      null,
+      `Scrape already registered with name - ${scrape.name}.`
+    );
+    return res.status(400).send(this.response);
+  }
+
+  //Save scrape
+  scrape = new Scrape(_.pick(req.body, ["name", "url", "brand", "frontCamera", "backCamera", "images"]));
   scrape = await scrape.save();
 
   if (scrape) {

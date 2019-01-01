@@ -2,25 +2,34 @@
   <h3></h3>
 
   <div class="card">
-      <div class="card-header">{{ scrape?.name }}</div>
-      <div class="card-body">
-        <div>
-          <h6>Url :</h6>
-          <p>{{ scrape?.url }}</p>
-        </div>
-      </div> 
+    <div class="card-body">
+      <div class="pb-2">
+        <b>Name :</b>
+        <p>{{ scrape?.name }}</p>
+      </div>
+      <div class="pb-2">
+        <b>Url :</b>
+        <p>{{ scrape?.url }}</p>
+      </div>
+      <div class="pb-2">
+        <b>Brand :</b>
+        <p>{{ scrape?.brand }}</p>
+      </div>
+      <div class="pb-2">
+        <b>Front camera :</b>
+        <p>{{ scrape?.frontCamera }}</p>
+      </div>
+      <div class="pb-2">
+        <b>Back camera :</b>
+        <p>{{ scrape?.backCamera }}</p>
+      </div>
     </div>
+  </div>
   <div class="card mt-4 ">
     <div class="card-body row p-0 m-0">
       <div *ngFor="let image of scrape?.images">
-        <a 
-          href="{{ image?.largeImage }}"
-          target="_blank"
-          download
-        >
-          <img class="smallImage"
-            src="{{ image?.smallImage }}"
-          />
+        <a href="{{ image?.largeImage }}" target="_blank" download>
+          <img class="smallImage" src="{{ image?.smallImage }}" />
         </a>
       </div>
     </div>

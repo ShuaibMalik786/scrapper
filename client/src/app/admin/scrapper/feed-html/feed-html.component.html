@@ -60,6 +60,27 @@
                         {{ scrapeSaveForm.getError("url") }}
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="brand">Brand :</label>
+                      <input type="text" class="form-control" id="brand" formControlName="brand" />
+                      <div *ngIf="scrapeSaveForm.hasError('brand')" class="alert alert-danger">
+                        {{ scrapeSaveForm.getError("brand") }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="frontCamera">Front camera :</label>
+                      <input type="text" class="form-control" id="frontCamera" formControlName="frontCamera" />
+                      <div *ngIf="scrapeSaveForm.hasError('frontCamera')" class="alert alert-danger">
+                        {{ scrapeSaveForm.getError("frontCamera") }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="backCamera">Back camera :</label>
+                      <input type="text" class="form-control" id="backCamera" formControlName="backCamera" />
+                      <div *ngIf="scrapeSaveForm.hasError('backCamera')" class="alert alert-danger">
+                        {{ scrapeSaveForm.getError("backCamera") }}
+                      </div>
+                    </div>
                   <button type="submit" class="btn btn-primary">Save</button>
                 </form>
           </div>

@@ -6,13 +6,29 @@ const scrapeSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
       minlength: 5,
-      maxlength: 100
+      maxlength: 255
     },
     url: {
       type: String,
       required: true,
       minlength: 5
+    },
+    brand: {
+      type: String,
+      required: true,
+      maxlength: 255
+    },
+    frontCamera: {
+      type: Number,
+      required: true,
+      maxlength: 3
+    },
+    backCamera: {
+      type: Number,
+      required: true,
+      maxlength: 3
     },
     images: {
       type: Array,
@@ -33,6 +49,11 @@ function validateScrape(scrape) {
     url: Joi.string()
       .min(5)
       .required(),
+    brand: Joi.string()
+      .min(5)
+      .required(),
+    frontCamera: Joi.string().required(),
+    backCamera: Joi.string().required(),
     images: Joi.array().items({
       smallImage: Joi.string()
         .min(5)
