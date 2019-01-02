@@ -12,7 +12,7 @@ async function scrapeUrls(html) {
   try {
     let images = [];
     for (let i = 0; i < $("._2xsyJg", html).length; i++) {
-      var pattern = new RegExp("https://rukminim1" + "(.*)" + ".jpg");
+      var pattern = new RegExp("https://rukminim1" + "(.*)" + "?q=90");
       let [imageUrl, ...something] = pattern.exec(
         $("._2xsyJg", html)[i].attribs.style
       );
@@ -30,7 +30,7 @@ async function getImageName(images) {
   let urls = [];
   for (let i = 0; i < images.length; i++) {
     const pattern = new RegExp(
-      "https://rukminim1.flixcart.com/blobio/248/248/" + "(.*)" + "?"
+      "https://rukminim1.flixcart.com/blobio/248/248/" + "(.*)" + "?q=90"
     );
     let [smallImage, imageName] = pattern.exec(images[i]);
     object = {
