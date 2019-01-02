@@ -9,7 +9,8 @@ import {
   AuthInterceptor,
   SignupService,
   ScrapperService,
-  UserService
+  UserService,
+  BrandService
 } from "./services/index";
 
 @NgModule({
@@ -22,7 +23,8 @@ import {
     UserService,
     AuthInterceptor,
     AuthGuard,
-    AdminGuard
+    AdminGuard,
+    BrandService
   ]
 })
 export class SharedModule {}

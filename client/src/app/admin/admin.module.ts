@@ -12,6 +12,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { SharedModule } from "../shared/shared.module";
 import { ViewScrapeComponent } from './scrapper/view-scrape/view-scrape.component';
 import { FeedHTMLComponent } from './scrapper/feed-html/feed-html.component';
+import { AddBrandComponent } from './brand/add-brand/add-brand.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FeedHTMLComponent } from './scrapper/feed-html/feed-html.component';
     ProfileComponent,
     ListScrappersComponent,
     ViewScrapeComponent,
-    FeedHTMLComponent
+    FeedHTMLComponent,
+    AddBrandComponent
   ],
   imports: [
     CommonModule,

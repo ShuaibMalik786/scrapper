@@ -2,6 +2,7 @@ import { ScrapperService } from "./../../../shared/services/scrapper.service";
 import { Component, OnInit } from "@angular/core";
 import { ValidationManager } from "ng2-validation-manager";
 import * as _ from "lodash";
+import { BrandService } from "src/app/shared/services";
 
 @Component({
   selector: "app-feed-html",
@@ -13,11 +14,15 @@ export class FeedHTMLComponent implements OnInit {
   images;
   scrapeSaveForm: any;
 
-  constructor(private scrapperService: ScrapperService) {}
+  constructor(
+    private scrapperService: ScrapperService,
+    private brandService: BrandService
+  ) {}
 
   ngOnInit() {
     this.initiateUrlForm();
     this.initiateSaveScrapeForm();
+    this.loadBrands();
     // this.getImages();
   }
 
@@ -56,6 +61,17 @@ export class FeedHTMLComponent implements OnInit {
         }
       );
     }
+  }
+
+  loadBrands() {
+    this.brandService.getBrands().subscribe(
+      success => {
+        console.log(success);
+      },
+      fail => {
+        console.log(fail.error);
+      }
+    );
   }
 
   initiateUrlForm() {

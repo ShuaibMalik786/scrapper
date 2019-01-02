@@ -4,3 +4,4 @@ export * from "./signup.service";
 export * from "./scrapper.service";
 export * from "./auth.service";
 export * from "./user.service";
+export * from "./brand.service";

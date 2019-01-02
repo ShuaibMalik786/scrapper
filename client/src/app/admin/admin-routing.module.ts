@@ -8,6 +8,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ScrapperComponent } from "./scrapper/scrapper.component";
 import { ViewScrapeComponent } from './scrapper/view-scrape/view-scrape.component';
+import { AddBrandComponent } from './brand/add-brand/add-brand.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: "feedHTML",
         component: FeedHTMLComponent
+      },
+      {
+        path: "addbrand",
+        component: AddBrandComponent
       }
     ]
   }
