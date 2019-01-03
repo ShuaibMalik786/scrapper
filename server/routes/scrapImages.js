@@ -13,7 +13,7 @@ const _ = require("lodash");
 let response;
 
 router.get("/list", [auth, admin], async (req, res) => {
-  const scrapes = await Scrape.find()
+  const scrapes = await Scrape.find(req.query)
     .sort("createdAt")
     .select("-images");
   if (scrapes) {

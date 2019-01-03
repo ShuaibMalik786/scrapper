@@ -27,10 +27,12 @@ export class ScrapperService {
   }
 
   // get all scrapping names
-  getScrapes(): Observable<any> {
-    const url = `${environment.apiBaseUrl}/scrape/list `;
+  getScrapes(params: any): Observable<any> {
+    const url = `${environment.apiBaseUrl}/scrape/list`;
     return this.http
-      .get(url)
+      .get(url, {
+        params: params
+      })
       .pipe(map(response => response, catchError(this.handleError)));
   }
 

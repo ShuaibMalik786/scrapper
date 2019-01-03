@@ -1,97 +1,151 @@
 <div class="container mt-4">
-    <form [formGroup]="scrapeUrlForm.getForm()" (ngSubmit)="startScrape()">
-      <div class="form-group">
-        <label for="html">html you want to scrape:</label>
-        <textarea rows="20" type="text" class="form-control" id="html" formControlName="html" ></textarea>
-        <div *ngIf="scrapeUrlForm.hasError('html')" class="alert alert-danger">
-          {{ scrapeUrlForm.getError("html") }}
-        </div>
+  <form [formGroup]="scrapeUrlForm.getForm()" (ngSubmit)="startScrape()">
+    <div class="form-group">
+      <label for="html">html you want to scrape:</label>
+      <textarea
+        rows="20"
+        type="text"
+        class="form-control"
+        id="html"
+        formControlName="html"
+      ></textarea>
+      <div *ngIf="scrapeUrlForm.hasError('html')" class="alert alert-danger">
+        {{ scrapeUrlForm.getError("html") }}
       </div>
-      <div class="text-center">
-          <button type="submit" class="btn btn-primary"> Scrape
-          </button>
-        </div>
-    </form>
-  
-    <div class="card mt-4" *ngIf="images">
-        <div class="card-header text-right">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fa fa-save"></i>
-            Save
-          </button>
-        </div>
-      <div class="card-body">
-        <div class="row">
-          <div *ngFor="let image of images">
-            <div class="col-12 p-2 col-md-6 col-lg-4 col-xl-4">
-              <img src="{{ image.smallImage }}" />
-            </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Scrape</button>
+    </div>
+  </form>
+
+  <div class="card mt-4" *ngIf="images">
+    <div class="card-header text-right">
+      <button
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        <i class="fa fa-save"></i> Save
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div *ngFor="let image of images">
+          <div class="col-12 p-2 col-md-6 col-lg-4 col-xl-4">
+            <img src="{{ image.smallImage }}" />
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
 
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-    
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Modal Heading</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form [formGroup]="scrapeSaveForm.getForm()" (ngSubmit)="saveScrape()">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+            />
+            <div
+              *ngIf="scrapeSaveForm.hasError('name')"
+              class="alert alert-danger"
+            >
+              {{ scrapeSaveForm.getError("name") }}
+            </div>
           </div>
-    
-          <!-- Modal body -->
-          <div class="modal-body">
-              <form [formGroup]="scrapeSaveForm.getForm()" (ngSubmit)="saveScrape()">
-                  <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" formControlName="name" />
-                    <div *ngIf="scrapeSaveForm.hasError('name')" class="alert alert-danger">
-                      {{ scrapeSaveForm.getError("name") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="url">Url :</label>
-                      <input type="text" class="form-control" id="url" formControlName="url" />
-                      <div *ngIf="scrapeSaveForm.hasError('url')" class="alert alert-danger">
-                        {{ scrapeSaveForm.getError("url") }}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="brand">Brand :</label>
-                      <input type="text" class="form-control" id="brand" formControlName="brand" />
-                      <div *ngIf="scrapeSaveForm.hasError('brand')" class="alert alert-danger">
-                        {{ scrapeSaveForm.getError("brand") }}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="frontCamera">Front camera :</label>
-                      <input type="text" class="form-control" id="frontCamera" formControlName="frontCamera" />
-                      <div *ngIf="scrapeSaveForm.hasError('frontCamera')" class="alert alert-danger">
-                        {{ scrapeSaveForm.getError("frontCamera") }}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="backCamera">Back camera :</label>
-                      <input type="text" class="form-control" id="backCamera" formControlName="backCamera" />
-                      <div *ngIf="scrapeSaveForm.hasError('backCamera')" class="alert alert-danger">
-                        {{ scrapeSaveForm.getError("backCamera") }}
-                      </div>
-                    </div>
-                  <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+          <div class="form-group">
+            <label for="url">Url :</label>
+            <input
+              type="text"
+              class="form-control"
+              id="url"
+              formControlName="url"
+            />
+            <div
+              *ngIf="scrapeSaveForm.hasError('url')"
+              class="alert alert-danger"
+            >
+              {{ scrapeSaveForm.getError("url") }}
+            </div>
           </div>
-    
-          <!-- Modal footer -->
-          <!-- <div class="modal-footer">
+          <div class="form-group">
+            <label for="brand">Select brand:</label>
+            <select class="form-control" id="brand" formControlName="brand">
+              <option *ngFor="let brand of brandList" [ngValue]="brand?.name">{{
+                brand?.name
+              }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="brand">Brand :</label>
+            <input
+              type="text"
+              class="form-control"
+              id="brand"
+              formControlName="brand"
+            />
+            <div
+              *ngIf="scrapeSaveForm.hasError('brand')"
+              class="alert alert-danger"
+            >
+              {{ scrapeSaveForm.getError("brand") }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="frontCamera">Front camera :</label>
+            <input
+              type="text"
+              class="form-control"
+              id="frontCamera"
+              formControlName="frontCamera"
+            />
+            <div
+              *ngIf="scrapeSaveForm.hasError('frontCamera')"
+              class="alert alert-danger"
+            >
+              {{ scrapeSaveForm.getError("frontCamera") }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="backCamera">Back camera :</label>
+            <input
+              type="text"
+              class="form-control"
+              id="backCamera"
+              formControlName="backCamera"
+            />
+            <div
+              *ngIf="scrapeSaveForm.hasError('backCamera')"
+              class="alert alert-danger"
+            >
+              {{ scrapeSaveForm.getError("backCamera") }}
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="saveScrape()">Save</button>
           </div> -->
-    
-        </div>
-      </div>
     </div>
-  
-  
+  </div>
+</div>

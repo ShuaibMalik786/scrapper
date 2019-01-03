@@ -11,8 +11,16 @@ import { BrandService } from "src/app/shared/services";
 })
 export class FeedHTMLComponent implements OnInit {
   scrapeUrlForm: any;
-  images;
+  images: any;
   scrapeSaveForm: any;
+  brandList: any;
+  selectedItems: any;
+  dropdownSettings = {
+    singleSelection: true,
+    text: "Select Brand",
+    enableSearchFilter: true,
+    classes: "myclass custom-class"
+  };
 
   constructor(
     private scrapperService: ScrapperService,
@@ -55,9 +63,11 @@ export class FeedHTMLComponent implements OnInit {
       this.scrapperService.SaveScrapeUrls(data).subscribe(
         success => {
           console.log(success);
+          alert('scrape saved successfully');
         },
         fail => {
           console.log(fail.error);
+          alert('scrape saved successfully');
         }
       );
     }
@@ -67,6 +77,7 @@ export class FeedHTMLComponent implements OnInit {
     this.brandService.getBrands().subscribe(
       success => {
         console.log(success);
+        this.brandList = success.data;
       },
       fail => {
         console.log(fail.error);

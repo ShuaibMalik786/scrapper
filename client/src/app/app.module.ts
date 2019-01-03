@@ -26,7 +26,7 @@ import { GenresComponent } from "./genres/genres.component";
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {

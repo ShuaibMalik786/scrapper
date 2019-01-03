@@ -5,3 +5,4 @@ export * from "./scrapper.service";
 export * from "./auth.service";
 export * from "./user.service";
 export * from "./brand.service";
+export * from "./filterMobile.service";

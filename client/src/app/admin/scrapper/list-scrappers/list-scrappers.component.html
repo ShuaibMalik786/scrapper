@@ -1,4 +1,121 @@
 <div class="container mt-4">
+  <div class="card mb-4">
+    <div class="card-body">
+      <form [formGroup]="filterMobileForm.getForm()" (ngSubmit)="applyFilter()">
+        <div class="row">
+          <div class="form-group col-lg-4">
+            <label for="brand">brand:</label>
+            <select class="form-control" id="brand" formControlName="brand">
+              <option value="any">Any</option>
+              <option *ngFor="let brand of brandList" [ngValue]="brand?.name">{{
+                brand?.name
+              }}</option>
+            </select>
+            <div
+              *ngIf="filterMobileForm.hasError('brand')"
+              class="alert alert-danger"
+            >
+              {{ filterMobileForm.getError("brand") }}
+            </div>
+          </div>
+          <div class="form-group col-lg-4">
+            <label for="frontCamera">Front camera :</label>
+            <select
+              class="form-control"
+              id="frontCamera"
+              formControlName="frontCamera"
+            >
+              <option value="any">Any</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+              <option value="32">32</option>
+            </select>
+            <div
+              *ngIf="filterMobileForm.hasError('frontCamera')"
+              class="alert alert-danger"
+            >
+              {{ filterMobileForm.getError("frontCamera") }}
+            </div>
+          </div>
+
+          <div class="form-group col-lg-4">
+            <label for="backCamera">Back camera :</label>
+            <select
+              class="form-control"
+              id="backCamera"
+              formControlName="backCamera"
+            >
+              <option value="any">Any</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+              <option value="32">32</option>
+            </select>
+            <div
+              *ngIf="filterMobileForm.hasError('backCamera')"
+              class="alert alert-danger"
+            >
+              {{ filterMobileForm.getError("backCamera") }}
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Apply</button>
+        <button class="btn btn-primary" (click)="clearFilters()">
+          Clear all
+        </button>
+      </form>
+    </div>
+  </div>
   <div class="row">
     <div
       class="col-12 col-sm-12 col-md-6 col-lg-4 pb-5"
@@ -9,15 +126,22 @@
         <div class="card-body">Mobile Image</div>
         <div class="card-footer">
           <div class="d-flex justify-content-around">
-            <a title="view details" data-toggle="tooltip"
+            <a
+              title="view details"
+              data-toggle="tooltip"
               class="btn btn-outline-primary rounded-circle"
               (click)="loadScrape(scrape._id)"
               ><i class="fa fa-eye"></i
             ></a>
-            <a title="edit" data-toggle="tooltip" class="btn btn-outline-primary rounded-circle"
+            <a
+              title="edit"
+              data-toggle="tooltip"
+              class="btn btn-outline-primary rounded-circle"
               ><i class="fa fa-edit"></i
             ></a>
-            <a title="delete" data-toggle="tooltip"
+            <a
+              title="delete"
+              data-toggle="tooltip"
               class="btn btn-outline-primary rounded-circle"
               (click)="deleteScrape(scrape._id)"
               ><i class="fa fa-trash"></i

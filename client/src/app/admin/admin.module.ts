@@ -13,6 +13,7 @@ import { SharedModule } from "../shared/shared.module";
 import { ViewScrapeComponent } from './scrapper/view-scrape/view-scrape.component';
 import { FeedHTMLComponent } from './scrapper/feed-html/feed-html.component';
 import { AddBrandComponent } from './brand/add-brand/add-brand.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AddBrandComponent } from './brand/add-brand/add-brand.component';
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    AngularMultiSelectModule,
   ],
   providers: [
     {
